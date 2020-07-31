@@ -18,7 +18,7 @@ email: jfxmate@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   A small blog for tech related content and anything helpful for the internet
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://blog.jfx.ac" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: itsjfx
 github_username:  itsjfx
 
