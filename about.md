@@ -4,10 +4,22 @@ title: About
 permalink: /about/
 ---
 
+## Me
+
+My name is Thomas and I'm a software engineer mainly interested in backend development or web-based full stack development. I have extensive experience working with Meteor.js as a full stack library, and also worked with makeshift full stacks by building REST APIs using Flask and Express.js and tieing it in with frontend code using React or jQuery and HTML5. This tends to be my main focus on development as I like to design products to please end users, and by working on a full stack it is definitely easy to guide the development of a product from all stages of the development cycle :)
+
+My main area of expertise is Node.js, for which I’ve been writing applications in 4 years, but I also have a soft spot for Python, Java, C and C++. I’m also a strong advocate for open source software, so I try to open source any of my modules for the public on [my GitHub](https://github.com/itsjfx).
+
+Although I consider myself to be *pretty good* at Javascript development, I don't want to see myself working in a frontend developer only role - and I would love to work as a full stack Node.js developer or at the very least a Node.js developer with React. However, I know this is an ambitious dream because the number of Node.js roles that go around are very limited. Of course I'd be very pleased working with a language like Python, Java and C++ and writing any type of software. I have a good understanding of these languages and have worked with them in a paid environment.
+
+For my personal life, I'm a Computer Science student looking to graduate this year (2020). I also have various hobbies such as being into fitness and going to the gym (and I always love to chat about this!), I'm a big gamer too in my spare time but most days I instead find myself in VS Code writing up something for a personal project instead.
+
+As for where **jfx** came from, well I thought it sounded and looked cool and *aestheticly pleasing* so I used it and it's stuck ever since. This is the alias I mainly use online, hence the blog and website name.
+
+## This blog
+
 This is just a personal blog for anything I thought worth sharing on the internet! :)
 
-I'm currently a student studying Computer Science in my final year.
+The idea is for me to post guides for things here, but I don't think this blog has a clear content field and it will just have whatever I feel like posting.
 
-I do a few things on the internet sometimes, namely I work on [SteamLevels.com](https://steamlevels.com/r/jfx). In my spare time I work on projects which I generally put on [my GitHub](https://github.com/itsjfx).
-
-This blog is just a small blog made in [Jekyll](https://jekyllrb.com/), which is definitely very cool and fun to use. It's also hosted on GitHub Pages which was very easy to get going (the Staticman integration made it very appealing!). A link to the blog's GitHub repository [is here](https://github.com/itsjfx/blog.jfx.ac).
+This blog itself is just a small blog made in [Jekyll](https://jekyllrb.com/), which is definitely very cool and fun to use. It's also hosted on GitHub Pages which was very easy to get going (the Staticman integration made it very appealing!). A link to the blog's GitHub repository [is here](https://github.com/itsjfx/blog.jfx.ac).

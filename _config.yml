@@ -16,7 +16,7 @@
 title: jfx
 email: jfxmate@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  A small blog for tech related content and anything helpful for the internet
+  A small blog for anything I think the internet would like!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.jfx.ac" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: itsjfx
