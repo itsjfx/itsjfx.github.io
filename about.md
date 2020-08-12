@@ -10,11 +10,11 @@ My name is Thomas and I'm a software engineer mainly interested in backend devel
 
 My main area of expertise is Node.js, for which I’ve been writing applications in 4 years, but I also have a soft spot for Python, Java, C and C++. I’m also a strong advocate for open source software, so I try to open source any of my modules for the public on [my GitHub](https://github.com/itsjfx).
 
-Although I consider myself to be *pretty good* at Javascript development, I don't want to see myself working in a frontend developer only role - and I would love to work as a full stack Node.js developer or at the very least a Node.js developer with React. However, I know this is an ambitious dream because the number of Node.js roles that go around are very limited. Of course I'd be very pleased working with a language like Python, Java and C++ and writing any type of software. I have a good understanding of these languages and have worked with them in a paid environment.
+Although I consider myself to be *pretty good* at Javascript development, I don't want to see myself working in a frontend developer only role - and I would love to work as a full stack developer in any language (bonus points for Node.js!) with React or Vue. However, I know this is an ambitious dream because the number of Node.js roles that go around are very limited. Of course I'd be very pleased working with a language like Python, Java and C++ and writing any type of software. I have a good understanding of these languages and have worked with them in a paid environment.
 
 For my personal life, I'm a Computer Science student looking to graduate this year (2020). I also have various hobbies such as being into fitness and going to the gym (and I always love to chat about this!), I'm a big gamer too in my spare time but most days I instead find myself in VS Code writing up something for a personal project instead.
 
-As for where **jfx** came from, well I thought it sounded and looked cool and *aestheticly pleasing* so I used it and it's stuck ever since. This is the alias I mainly use online, hence the blog and website name.
+As for where ```jfx``` came from, well I thought it sounded and looked cool and *aestheticly pleasing* so I used it and it's stuck ever since. This is the alias I mainly use online, hence the blog and website name.
 
 ## This blog
 
