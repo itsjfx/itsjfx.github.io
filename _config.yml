@@ -15,7 +15,7 @@
 # in the templates via {{ site.myvariable }}.
 title: jfx Blog
 description: >- # this means to ignore newlines until "baseurl:"
-  A small blog for anything I think the internet would like!
+  A blog dedicated to my rambling thoughts about tech and privacy.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://blog.jfx.ac" # the base hostname & protocol for your site, e.g. http://example.com
 
