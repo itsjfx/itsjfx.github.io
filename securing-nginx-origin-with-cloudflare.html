@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>How to secure your nginx origin server with Cloudflare to stop any origin leaks | jfx Blog</title>
+<title>How to secure your nginx + Cloudflare configuration to stop any origin leaks | jfx Blog</title>
 <meta name="generator" content="Jekyll v4.2.0" />
-<meta property="og:title" content="How to secure your nginx origin server with Cloudflare to stop any origin leaks" />
+<meta property="og:title" content="How to secure your nginx + Cloudflare configuration to stop any origin leaks" />
 <meta name="author" content="Thomas" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="I decided to write this as although a lot of guides on the internet provide a solid configuration for an nginx server, most of these guides will result in an IP leak somewhere under their configuration for the origin server somewhere." />
@@ -16,9 +16,9 @@
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-08-03T04:42:00+00:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="How to secure your nginx origin server with Cloudflare to stop any origin leaks" />
+<meta property="twitter:title" content="How to secure your nginx + Cloudflare configuration to stop any origin leaks" />
 <script type="application/ld+json">
-{"description":"I decided to write this as although a lot of guides on the internet provide a solid configuration for an nginx server, most of these guides will result in an IP leak somewhere under their configuration for the origin server somewhere.","url":"https://blog.jfx.ac/securing-nginx-origin-with-cloudflare.html","@type":"BlogPosting","headline":"How to secure your nginx origin server with Cloudflare to stop any origin leaks","dateModified":"2020-08-03T04:42:00+00:00","datePublished":"2020-08-03T04:42:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.jfx.ac/securing-nginx-origin-with-cloudflare.html"},"author":{"@type":"Person","name":"Thomas"},"@context":"https://schema.org"}</script>
+{"description":"I decided to write this as although a lot of guides on the internet provide a solid configuration for an nginx server, most of these guides will result in an IP leak somewhere under their configuration for the origin server somewhere.","url":"https://blog.jfx.ac/securing-nginx-origin-with-cloudflare.html","@type":"BlogPosting","headline":"How to secure your nginx + Cloudflare configuration to stop any origin leaks","dateModified":"2020-08-03T04:42:00+00:00","datePublished":"2020-08-03T04:42:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.jfx.ac/securing-nginx-origin-with-cloudflare.html"},"author":{"@type":"Person","name":"Thomas"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://blog.jfx.ac/feed.xml" title="jfx Blog" />
 </head>
@@ -42,10 +42,10 @@
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">How to secure your nginx origin server with Cloudflare to stop any origin leaks</h1>
+    <h1 class="post-title p-name" itemprop="name headline">How to secure your nginx + Cloudflare configuration to stop any origin leaks</h1>
     <p class="post-meta"><time class="dt-published" datetime="2020-08-03T04:42:00+00:00" itemprop="datePublished">
         Aug 3, 2020
-      </time>~<time class="dt-modified" datetime="2020-12-28T16:05:00+00:00" itemprop="dateModified">
+      </time>~<time class="dt-modified" datetime="2020-12-28T16:26:00+00:00" itemprop="dateModified">
           Dec 28, 2020
         </time>• 
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
