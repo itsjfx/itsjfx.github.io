@@ -21,7 +21,7 @@ url: "https://blog.jfx.ac" # the base hostname & protocol for your site, e.g. ht
 
 author:
   email: me@jfx.ac
-  name: jfx
+  name: Thomas (jfx)
 
 # Build settings
 markdown: kramdown

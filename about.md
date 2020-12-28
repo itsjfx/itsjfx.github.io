@@ -6,7 +6,7 @@ permalink: /about/
 
 ## Me
 
-My name is Thomas and I primarily work as a software engineer mainly interested in backend development or web-based full stack development. Despite this being my primary role, I have experience in Dev Ops, Cloud, Infrastructure as an engineer. I also have a vested interest in security and privacy.
+My name is Thomas and I primarily work as a software engineer mainly interested in backend development or web-based full stack development. Despite this being my primary role, I have experience in Dev Ops, Cloud, IT Infrastructure as an engineer. I also have a vested interest in security and privacy.
 
 For software engineering I have extensive experience working with Meteor.js as a full stack library, and also worked with REST APIs using Flask or Express and tying it in with React or AJAX/jQuery.
 
