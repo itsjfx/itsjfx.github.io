@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>The horrors of sending transactional email… and why you should use Postmark | jfx Blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="The horrors of sending transactional email… and why you should use Postmark" />
+<meta name="author" content="Thomas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="I would like to begin this post by first stating that I have not been asked by Postmark to write this article. I believe that Postmark offers an excellent service and because of that they deserve my recognition." />
+<meta property="og:description" content="I would like to begin this post by first stating that I have not been asked by Postmark to write this article. I believe that Postmark offers an excellent service and because of that they deserve my recognition." />
+<link rel="canonical" href="https://blog.jfx.ac/the-horrors-of-sending-transactional-email.html" />
+<meta property="og:url" content="https://blog.jfx.ac/the-horrors-of-sending-transactional-email.html" />
+<meta property="og:site_name" content="jfx Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-29T07:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The horrors of sending transactional email… and why you should use Postmark" />
+<script type="application/ld+json">
+{"description":"I would like to begin this post by first stating that I have not been asked by Postmark to write this article. I believe that Postmark offers an excellent service and because of that they deserve my recognition.","url":"https://blog.jfx.ac/the-horrors-of-sending-transactional-email.html","@type":"BlogPosting","headline":"The horrors of sending transactional email… and why you should use Postmark","dateModified":"2020-12-29T07:00:00+00:00","datePublished":"2020-12-29T07:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.jfx.ac/the-horrors-of-sending-transactional-email.html"},"author":{"@type":"Person","name":"Thomas"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://blog.jfx.ac/feed.xml" title="jfx Blog" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">jfx Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The horrors of sending transactional email... and why you should use Postmark</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-12-29T07:00:00+00:00" itemprop="datePublished">
+        Dec 29, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Thomas</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>I would like to begin this post by first stating that I have not been asked by <a href="https://postmarkapp.com">Postmark</a> to write this article. I believe that <a href="https://postmarkapp.com">Postmark</a> offers an excellent service and because of that they deserve my recognition.</p>
+
+<p>As for what transactional email is, Postmark provides a good definition on their website:</p>
+<blockquote>
+  <p>Transactional email is typically a unique, high-priority message sent to a single recipient. They are often triggered by something a user does or doesn’t do.</p>
+</blockquote>
+
+<p>This is different to marketing/bulk/broadcast email:</p>
+<blockquote>
+  <p>[Broadcast email] is sent to multiple recipients at once. Things like product update announcements or terms of service notices are examples of broadcast emails.</p>
+</blockquote>
+
+<p>If a user does not receive their transactional email then this will most likely result in a bad user experience. For example if a user cannot verify their email on your website since they never receive a verification email and your website requires a users email to be verified before they can purchase a product, then that user will not be able to buy their product and as a result will most likely never attempt to use your website again due to their bad user experience. This example turned out to be a reality for me.</p>
+
+<h2 id="a-story-about-my-nightmares-and-experience-sending-transactional-email">A story about my nightmares and experience sending transactional email</h2>
+
+<p>Sending transactional email just sucks because there’s a lot that can go wrong, and using an email delivery provider which is blacklisted by major email hosting providers is another thing to add to the list. At SteamLevels we were looking for an email sending provider which could reliably send emails to our users for two cases: verification emails (when users add an email to their account), as well as to send them updates about their account status (non promotional). We never sent any spam or promotional mail and our users may only ever receive 2 emails in their lifetime for their account. Several headaches were endured before we finally settled on a provider which has proven to offer this service with great success and reliability.</p>
+
+<h3 id="why-not-just-move-to-a-dedicated-ip">Why not just move to a dedicated IP?</h3>
+
+<p>When we first started having issues with email delivery this was the first idea we had to solve the issue: if other people are ruining our reputation due to us sharing an IP with them, why not just move to our own IP? We quickly discovered that due to the low volume of emails we send (we send ~5k a month now and back then it was even less) moving to a dedicated IP would create a new set of issues. This is due to IP reputation which is a core part of email delivery, Postmark have <a href="https://postmarkapp.com/blog/the-false-promises-of-dedicated-ips">a good blog post</a> on the subject where they discuss dedicated IPs better than I could. Because of the low volume of emails we send, we were forced to continue looking for an email provider which had reputable shared IPs.</p>
+
+<h3 id="mailgun">Mailgun</h3>
+
+<p>We began by using <a href="https://www.mailgun.com">Mailgun</a> for sending our transaction email (whom promote themselves as a “Transactional Email API Service For Developers”). We quickly discovered that Yahoo and AOL blacklisted Mailgun and as a result none of our customers with a Yahoo or AOL email could receive any of our verification emails. This was extremely problematic as it resulted in us losing customers as it turns out people still use Yahoo and AOL for their email hosting. Yahoo/AOL and Mailgun seem to have a hateful relationship that even <a href="https://www.mailgun.com/blog/yahoo-aol-throttling-mailgun-festivus-airing-grievances-part-two/">Mailgun wrote a blog post about it</a>. None of the suggestions in the post deemed useful as we rarely sent emails to these providers and they still blacklisted us, so it was off to another provider for us.</p>
+
+<h3 id="sendgrid">SendGrid</h3>
+
+<p>This was when we went to <a href="https://sendgrid.com">SendGrid</a>. Everyone loves to talk about how great this provider is so we decided to give it a shot. We noticed we were able to send emails to all major email providers (Gmail, Sendgrid and Outlook) which was a call for celebration, yay… but not for long. It wasn’t long before we noticed that only ~93% of our emails were being sent to our users. With further investigation we discovered yet again that our users email providers were blacklisting our SendGrid IPs due to spam being sent from them from other customers. A German postmaster we contacted explained that</p>
+
+<blockquote>
+  <p>Your provider has added you to a pool of senders that regularly sends spam to our customers and to our own spamtrap addresses.</p>
+</blockquote>
+
+<p>At this point we were not happy with SendGrid and after some back and forth with their support team they informed us they are unable to move their customers to other shared IP pools manually as it gives the impression of “snowshoe spamming” and that they recommended us paying for a dedicated IP (an extra $75 a month). Actually the support staff said that they would “normally not recommend” having a dedicated IP but it would be the most “decisive way” to fix the issue. They also recommended us to go around emailing each postmaster to whitelist our domain. We were not pleased with their support as buying a dedicated IP would cause more problems due to the low amount of email we send so we decided to look again for another provider.</p>
+
+<h3 id="postmark-a-new-hope">Postmark, a new hope</h3>
+
+<p>We finally discovered <a href="https://postmarkapp.com">Postmark</a> after finding their <a href="https://postmarkapp.com/why">Why Postmark?</a> page on Google which got our attention. We decided to try it and at this point I was tired of transferring email templates across providers and rewriting code to use a new API, but just like Goldilocks the third time was the charm.</p>
+
+<p>Before being allowed to use Postmark we had to fill out a form describing our reasons for using their service and we were manually approved very quickly. This is so their service is only used for transactional email, and so they can maintain their high reliability and deliverability rates. They have wonderful support and offer to talk to you face to face when you first sign up in order to make sure you are getting the best service possible. They also send weekly digests about your deliverability so you can keep track of whether or not you’re having any issues with your email service. On top of this, they offer a <a href="https://dmarc.postmarkapp.com">free DMARC monitoring service</a> which provides a human-readable summary of your DMARC reports. Postmark also provide <a href="https://postmarkapp.com/dedicated-ips">dedicated IPs</a> for an extra $50 per IP per month, and offer automated warmup of these dedicated IPs to ensure your IP reputation is up to scratch. More information on their dedicated IP offerings is <a href="https://postmarkapp.com/dedicated-ips">available here</a>.</p>
+
+<p>Enough with the sales pitch and back to our experience using them. Over 3 months worth of emails (~12k emails) only 7 emails were flagged as SPAM (all to a Russian email host). We had a bounce rate of 1.8% which is mostly due to mailboxes not existing (user typos) or mailboxes being overquota. It’s safe to say that with these rates we are very pleased with Postmark and will not be going anywhere.</p>
+
+<h3 id="other-providers">Other providers</h3>
+
+<p>That being said there are other email providers out there which could offer a better service depending on your needs. If your application uses Amazon Web Services (AWS) it may be worth looking into Amazon’s <a href="https://aws.amazon.com/ses">Simple Email Service (SES)</a>. This is because if you’re send your email through SES with an application hosted on an Amazon EC2 it will cost you $0 for the first 62,000 emails you send each month. More information on their pricing is <a href="https://aws.amazon.com/ses/pricing">available here</a>. They also have a cheap rate for dedicated IPs ($24.95) and you can easily tie Amazon’s SES with their <a href="https://aws.amazon.com/sns">Simple Notification Service (SNS)</a>, <a href="https://aws.amazon.com/lambda">Lambda</a> or any other AWS services.</p>
+
+<h2 id="marketingbulk-email">Marketing/Bulk email</h2>
+
+<p>I personally haven’t had to send any marketing or bulk email, but Postmark is now offering “broadcast messages” (bulk emailing) through their “message streams” service. More information is <a href="https://postmarkapp.com/message-streams">available here</a>. Since Postmark is so good at sending transactional email then I have high hopes for their bulk/broadcast email service too, and would encourage anyone eager to send marketing email to investigate.</p>
+
+<p>Otherwise due to Amazon’s flexible pricing system and cheap dedicated IP offerings it may be worth considering SES as you can pay per email sent and because of this you can be more flexible with your email budget.</p>
+
+<p>I have also heard good things about <a href="https://mailchimp.com">Mailchimp</a>, Postmark also previously recommended them for sending bulk emails.</p>
+
+<p>Due to my previous experiences with SendGrid and Mailgun I would not recommend them to anyone, perhaps SendGrid for bulk emails but be wary of your delivery rates with their service.</p>
+
+<h2 id="materials">Materials</h2>
+
+<p>If you’re interested in learning more about email reputation <a href="https://www.mailjet.com/blog/news/sender-score-and-email-reputation">Mailjet has a good article on the subject</a>.</p>
+
+  </div><a class="u-url" href="/the-horrors-of-sending-transactional-email.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Thomas (jfx)</li>
+          <li><a class="u-email" href="mailto:me@jfx.ac">me@jfx.ac</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>A blog dedicated to my rambling thoughts about tech and privacy.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/itsjfx" title="itsjfx"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/itsjfx" title="itsjfx"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
