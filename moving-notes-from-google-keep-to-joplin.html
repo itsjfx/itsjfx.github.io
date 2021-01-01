@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Moving notes from Google Keep to Joplin | jfx Blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="Moving notes from Google Keep to Joplin" />
+<meta name="author" content="Thomas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="As part of my new years resolution to be more privacy conscious I’ve decided to try and migrate as many of my Google services to open-source alternatives as possible. After some investigation Joplin seemed to be a suitable alternative to Google Keep, my primary notes manager. Although Google Keep is more for “sticky” notes and Joplin is more like Evernote where it is supposed to hold virtual notebooks, it seemed like a suitable alternative. I liked the in-built synchronisation and end-to-end encryption (E2EE) support and it’s nice having multiple notebooks for categorising my notes. Moving over Before you follow this guide note that the migration script which generates an Evernote backup of your Keep files so you can export them to Joplin is written for Python 3+ and you will need Python 3+ installed on your system. That’s right, you need a script to convert the Keep data you download to a format that Joplin can import (Evernotes ENEX format) so you can view your notes in Joplin. A second thing to note is that by default if a note is unnamed then it will simply be titled after the date it was first made instead of the first line or the start of the content of the note. I suppose someone could rewrite the script to detect when a date is a title and if so then rename the title after the beginning of the content… I had ~300 untitled notes that I manually sorted and deleted after importing but this process can be really time consuming. Steps You need to export your notes from Google Keep, fortunately Google provide a service called “Google Takeout” which allows you to export your data many of their services (Keep included). Head over to https://takeout.google.com/settings/takeout and you’ll get a screen that looks similar to this: You want to make sure you press “Deselect all” Then scroll down and find “Keep” and tick it Before finally creating your export with these parameters You should shortly receive an email with a link to download your data. Google will make you verify your account with your password before your zip/tgz can be downloaded. Once you have downloaded and extracted your files download a copy of my modified version of the keep-to-enex script from here: https://gist.github.com/itsjfx/689ae620222240911a3efae33e313b1b. The original version is available here https://gitlab.com/charlescanato/google-keep-to-evernote-converter but it didn’t work for me so I added a modification that allowed it to work. Put that script in the folder before the Keep/ folder, which should be in Takeout/. After that run the script with python keep-to-enex.py -o output.enex -f &quot;./Keep&quot; - where output.enex will be the name of the file generated and “output” will be the name of the notebook created from your backup. Feel free to rename it to something such as “Personal.enex” instead. Now open Joplin and go File -&gt; Import -&gt; ENEX - Evernote Export File (as Markdown) and select your ENEX backup file you just generated. Once this process is complete a notebook with the same name as your backup will be created and all your notes (and images) will be imported." />
+<meta property="og:description" content="As part of my new years resolution to be more privacy conscious I’ve decided to try and migrate as many of my Google services to open-source alternatives as possible. After some investigation Joplin seemed to be a suitable alternative to Google Keep, my primary notes manager. Although Google Keep is more for “sticky” notes and Joplin is more like Evernote where it is supposed to hold virtual notebooks, it seemed like a suitable alternative. I liked the in-built synchronisation and end-to-end encryption (E2EE) support and it’s nice having multiple notebooks for categorising my notes. Moving over Before you follow this guide note that the migration script which generates an Evernote backup of your Keep files so you can export them to Joplin is written for Python 3+ and you will need Python 3+ installed on your system. That’s right, you need a script to convert the Keep data you download to a format that Joplin can import (Evernotes ENEX format) so you can view your notes in Joplin. A second thing to note is that by default if a note is unnamed then it will simply be titled after the date it was first made instead of the first line or the start of the content of the note. I suppose someone could rewrite the script to detect when a date is a title and if so then rename the title after the beginning of the content… I had ~300 untitled notes that I manually sorted and deleted after importing but this process can be really time consuming. Steps You need to export your notes from Google Keep, fortunately Google provide a service called “Google Takeout” which allows you to export your data many of their services (Keep included). Head over to https://takeout.google.com/settings/takeout and you’ll get a screen that looks similar to this: You want to make sure you press “Deselect all” Then scroll down and find “Keep” and tick it Before finally creating your export with these parameters You should shortly receive an email with a link to download your data. Google will make you verify your account with your password before your zip/tgz can be downloaded. Once you have downloaded and extracted your files download a copy of my modified version of the keep-to-enex script from here: https://gist.github.com/itsjfx/689ae620222240911a3efae33e313b1b. The original version is available here https://gitlab.com/charlescanato/google-keep-to-evernote-converter but it didn’t work for me so I added a modification that allowed it to work. Put that script in the folder before the Keep/ folder, which should be in Takeout/. After that run the script with python keep-to-enex.py -o output.enex -f &quot;./Keep&quot; - where output.enex will be the name of the file generated and “output” will be the name of the notebook created from your backup. Feel free to rename it to something such as “Personal.enex” instead. Now open Joplin and go File -&gt; Import -&gt; ENEX - Evernote Export File (as Markdown) and select your ENEX backup file you just generated. Once this process is complete a notebook with the same name as your backup will be created and all your notes (and images) will be imported." />
+<link rel="canonical" href="https://blog.jfx.ac/moving-notes-from-google-keep-to-joplin.html" />
+<meta property="og:url" content="https://blog.jfx.ac/moving-notes-from-google-keep-to-joplin.html" />
+<meta property="og:site_name" content="jfx Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-12-31T14:23:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Moving notes from Google Keep to Joplin" />
+<script type="application/ld+json">
+{"description":"As part of my new years resolution to be more privacy conscious I’ve decided to try and migrate as many of my Google services to open-source alternatives as possible. After some investigation Joplin seemed to be a suitable alternative to Google Keep, my primary notes manager. Although Google Keep is more for “sticky” notes and Joplin is more like Evernote where it is supposed to hold virtual notebooks, it seemed like a suitable alternative. I liked the in-built synchronisation and end-to-end encryption (E2EE) support and it’s nice having multiple notebooks for categorising my notes. Moving over Before you follow this guide note that the migration script which generates an Evernote backup of your Keep files so you can export them to Joplin is written for Python 3+ and you will need Python 3+ installed on your system. That’s right, you need a script to convert the Keep data you download to a format that Joplin can import (Evernotes ENEX format) so you can view your notes in Joplin. A second thing to note is that by default if a note is unnamed then it will simply be titled after the date it was first made instead of the first line or the start of the content of the note. I suppose someone could rewrite the script to detect when a date is a title and if so then rename the title after the beginning of the content… I had ~300 untitled notes that I manually sorted and deleted after importing but this process can be really time consuming. Steps You need to export your notes from Google Keep, fortunately Google provide a service called “Google Takeout” which allows you to export your data many of their services (Keep included). Head over to https://takeout.google.com/settings/takeout and you’ll get a screen that looks similar to this: You want to make sure you press “Deselect all” Then scroll down and find “Keep” and tick it Before finally creating your export with these parameters You should shortly receive an email with a link to download your data. Google will make you verify your account with your password before your zip/tgz can be downloaded. Once you have downloaded and extracted your files download a copy of my modified version of the keep-to-enex script from here: https://gist.github.com/itsjfx/689ae620222240911a3efae33e313b1b. The original version is available here https://gitlab.com/charlescanato/google-keep-to-evernote-converter but it didn’t work for me so I added a modification that allowed it to work. Put that script in the folder before the Keep/ folder, which should be in Takeout/. After that run the script with python keep-to-enex.py -o output.enex -f &quot;./Keep&quot; - where output.enex will be the name of the file generated and “output” will be the name of the notebook created from your backup. Feel free to rename it to something such as “Personal.enex” instead. Now open Joplin and go File -&gt; Import -&gt; ENEX - Evernote Export File (as Markdown) and select your ENEX backup file you just generated. Once this process is complete a notebook with the same name as your backup will be created and all your notes (and images) will be imported.","url":"https://blog.jfx.ac/moving-notes-from-google-keep-to-joplin.html","@type":"BlogPosting","headline":"Moving notes from Google Keep to Joplin","dateModified":"2020-12-31T14:23:00+00:00","datePublished":"2020-12-31T14:23:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.jfx.ac/moving-notes-from-google-keep-to-joplin.html"},"author":{"@type":"Person","name":"Thomas"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://blog.jfx.ac/feed.xml" title="jfx Blog" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">jfx Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Moving notes from Google Keep to Joplin</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2020-12-31T14:23:00+00:00" itemprop="datePublished">
+        Dec 31, 2020
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Thomas</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>As part of my new years resolution to be more privacy conscious I’ve decided to try and migrate as many of my Google services to open-source alternatives as possible. After some investigation Joplin seemed to be a suitable alternative to Google Keep, my primary notes manager. Although Google Keep is more for “sticky” notes and Joplin is more like Evernote where it is supposed to hold virtual notebooks, it seemed like a suitable alternative. I liked the in-built synchronisation and end-to-end encryption (E2EE) support and it’s nice having multiple notebooks for categorising my notes.</p>
+
+<h2 id="moving-over">Moving over</h2>
+
+<p><strong>Before you follow this guide note that the migration script which generates an Evernote backup of your Keep files so you can export them to Joplin is written for Python 3+ and you will need Python 3+ installed on your system.</strong></p>
+
+<p>That’s right, you need a script to convert the Keep data you download to a format that Joplin can import (Evernotes ENEX format) so you can view your notes in Joplin.</p>
+
+<p>A second thing to note is that by default if a note is unnamed then it will simply be titled after the date it was first made instead of the first line or the start of the content of the note. I suppose someone could rewrite the script to detect when a date is a title and if so then rename the title after the beginning of the content… I had ~300 untitled notes that I manually sorted and deleted after importing but this process can be really time consuming.</p>
+
+<h3 id="steps">Steps</h3>
+
+<p>You need to export your notes from Google Keep, fortunately Google provide a service called “Google Takeout” which allows you to export your data many of their services (Keep included). Head over to <a href="https://takeout.google.com/settings/takeout">https://takeout.google.com/settings/takeout</a> and you’ll get a screen that looks similar to this:</p>
+
+<p>You want to make sure you press “Deselect all”
+<img src="/assets/img/moving-notes-from-google-keep-to-joplin/takeout-1.png" alt="Takeout Screen 1" /></p>
+
+<p>Then scroll down and find “Keep” and tick it
+<img src="/assets/img/moving-notes-from-google-keep-to-joplin/takeout-2.png" alt="Takeout Screen 2" /></p>
+
+<p>Before finally creating your export with these parameters
+<img src="/assets/img/moving-notes-from-google-keep-to-joplin/takeout-3.png" alt="Takeout Screen 3" /></p>
+
+<p>You should shortly receive an email with a link to download your data. Google will make you verify your account with your password before your zip/tgz can be downloaded.</p>
+
+<p>Once you have downloaded and extracted your files download a copy of my modified version of the keep-to-enex script from here: <a href="https://gist.github.com/itsjfx/689ae620222240911a3efae33e313b1b">https://gist.github.com/itsjfx/689ae620222240911a3efae33e313b1b</a>. The original version is available here <a href="https://gitlab.com/charlescanato/google-keep-to-evernote-converter">https://gitlab.com/charlescanato/google-keep-to-evernote-converter</a> but it didn’t work for me so I added a modification that allowed it to work.</p>
+
+<p>Put that script in the folder before the <code class="language-plaintext highlighter-rouge">Keep/</code> folder, which should be in <code class="language-plaintext highlighter-rouge">Takeout/</code>. After that run the script with <code class="language-plaintext highlighter-rouge">python keep-to-enex.py -o output.enex -f "./Keep"</code> - where <code class="language-plaintext highlighter-rouge">output.enex</code> will be the name of the file generated and “output” will be the name of the notebook created from your backup. Feel free to rename it to something such as “Personal.enex” instead.</p>
+
+<p>Now open Joplin and go File -&gt; Import -&gt; ENEX - Evernote Export File (as Markdown) and select your ENEX backup file you just generated.</p>
+
+<p><img src="/assets/img/moving-notes-from-google-keep-to-joplin/joplin-import.png" alt="Joplin Import" /></p>
+
+<p>Once this process is complete a notebook with the same name as your backup will be created and all your notes (and images) will be imported.</p>
+
+  </div><a class="u-url" href="/moving-notes-from-google-keep-to-joplin.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Thomas (jfx)</li>
+          <li><a class="u-email" href="mailto:me@jfx.ac">me@jfx.ac</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>A blog dedicated to my rambling thoughts about tech and privacy.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/itsjfx" title="itsjfx"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/itsjfx" title="itsjfx"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
