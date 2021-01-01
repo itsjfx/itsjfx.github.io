@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>How to synchronise Joplin notes to AWS S3 | jfx Blog</title>
+<meta name="generator" content="Jekyll v4.2.0" />
+<meta property="og:title" content="How to synchronise Joplin notes to AWS S3" />
+<meta name="author" content="Thomas" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="AWS S3 support is currently in beta for Joplin but it seems to have all the functionality necessary and has been working very smoothly across multiple devices for me. I couldn’t find any steps when I first set it up so here’s a guide on how to set it up." />
+<meta property="og:description" content="AWS S3 support is currently in beta for Joplin but it seems to have all the functionality necessary and has been working very smoothly across multiple devices for me. I couldn’t find any steps when I first set it up so here’s a guide on how to set it up." />
+<link rel="canonical" href="https://blog.jfx.ac/syncing-joplin-notes-to-aws-s3.html" />
+<meta property="og:url" content="https://blog.jfx.ac/syncing-joplin-notes-to-aws-s3.html" />
+<meta property="og:site_name" content="jfx Blog" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-01T15:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to synchronise Joplin notes to AWS S3" />
+<script type="application/ld+json">
+{"description":"AWS S3 support is currently in beta for Joplin but it seems to have all the functionality necessary and has been working very smoothly across multiple devices for me. I couldn’t find any steps when I first set it up so here’s a guide on how to set it up.","url":"https://blog.jfx.ac/syncing-joplin-notes-to-aws-s3.html","@type":"BlogPosting","headline":"How to synchronise Joplin notes to AWS S3","dateModified":"2021-01-01T15:00:00+00:00","datePublished":"2021-01-01T15:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://blog.jfx.ac/syncing-joplin-notes-to-aws-s3.html"},"author":{"@type":"Person","name":"Thomas"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://blog.jfx.ac/feed.xml" title="jfx Blog" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">jfx Blog</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">How to synchronise Joplin notes to AWS S3</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2021-01-01T15:00:00+00:00" itemprop="datePublished">
+        Jan 1, 2021
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Thomas</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <p>AWS S3 support is currently in beta for Joplin but it seems to have all the functionality necessary and has been working very smoothly across multiple devices for me. I couldn’t find any steps when I first set it up so here’s a guide on how to set it up.</p>
+
+<p>The pricing for S3 <a href="https://aws.amazon.com/s3/pricing/">is available here</a>.</p>
+
+<p><em>It’s worth noting that if you’re eligible for AWS free tier you will receive 5 GB of storage for free during your first 12 months.</em></p>
+
+<p>Make sure you have created an AWS account and added billing information before attempting to make an S3 bucket.</p>
+
+<h3 id="create-your-bucket">Create your bucket</h3>
+
+<p>Once on the AWS dashboard at the top search for “S3” and go to the S3 dashboard for your region.</p>
+
+<p>After that go to “Create bucket” and add a unique name for your bucket like <code class="language-plaintext highlighter-rouge">my-notes</code>. Make sure your region is set to your correct region. You will want to have “Block all public settings” ticked.
+<img src="/assets/img/syncing-joplin-notes-to-aws-s3/s3-config-1.png" alt="AWS settings" /></p>
+
+<p>I would recommend turning off “Bucket Versioning” as Joplin has “Note History” built into the program which will allow you to easily recover your documents. You can turn on Bucket Versioning if you are worried about application failures with Joplin and syncing across devices, however just be careful about the added expenses. You can change this at any time.</p>
+
+<p>I would recommend turning on “Default encryption” for your bucket also. Even if you have end-to-end-encryption enabled in Joplin it’s always a good idea to enable it for the S3 bucket. It also doesn’t cost any extra and any processing delays will be negligible.</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/s3-config-2.png" alt="AWS settings 2" /></p>
+
+<h3 id="generating-credentials-for-joplin">Generating credentials for Joplin</h3>
+
+<p>Once your bucket is created you must generate IAM credentials that have access to your bucket. Before you can do this however you must create a policy which restricts access to only your bucket.</p>
+
+<h4 id="create-a-policy-for-joplin-bucket">Create a policy for Joplin bucket</h4>
+
+<p>On the AWS dashboard search for “IAM”. You should get a screen similar to the one below. Once here click on “Customer managed policies”.</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/iam-menu.png" alt="IAM menu" /></p>
+
+<p>Once there click “Create policy” and complete the following steps in the “Visual editor”:</p>
+
+<ol>
+  <li>Click “Service” and select “S3”</li>
+  <li>Under Actions
+    <ol>
+      <li>Under “List” select “ListBucket”</li>
+      <li>Under “Read” select “GetBucketLocation” and “GetObject”</li>
+      <li>Under “Write” select “DeleteBucket”, “DeleteBucketVersion” and “PutObject”</li>
+    </ol>
+  </li>
+  <li>Under Resources
+    <ol>
+      <li>Select “Specific” as the type of resource</li>
+      <li>Click “Add ARN” for bucket</li>
+      <li>Type in your bucket name in the “Bucket name” field and click “Add”</li>
+      <li>Click “Add ARN” for object</li>
+      <li>Type in your bucket name in the “Bucket name” field like the previous step</li>
+      <li>Tick the “Any” button under “Object name” and click “Add”</li>
+    </ol>
+  </li>
+</ol>
+
+<p>After adding the service and adding actions</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/policy-menu-1.png" alt="Create policy 1" /></p>
+
+<p>The add ARN for bucket</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/policy-menu-2.png" alt="Create policy 2" /></p>
+
+<p>The add ARN for object</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/policy-menu-3.png" alt="Create policy 3" /></p>
+
+<p>Once these steps are completed click “Review policy”, give it a name such as <code class="language-plaintext highlighter-rouge">joplin-my-notes-policy</code> and click “Create policy”.</p>
+
+<h4 id="creating-your-iam-user">Creating your IAM user</h4>
+
+<p>Now with your policy you can finally generate credentials for your devices. I would recommend that each device should have their own set of credentials/user so you can revoke them easily and also not rely on one key.</p>
+
+<p>To create a user search again for “IAM” and once opened select “Users” instead this time. Click “Add user” at the top and give it a name like <code class="language-plaintext highlighter-rouge">joplin-desktop</code> and tick “Programmatic access”</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/iam-user-1.png" alt="IAM user 1" /></p>
+
+<p>From here you need to add the policy you just created to your user. Click “Attach existing policies directly” at the top then click “Filter policies” and select “Customer managed”.</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/iam-user-2.png" alt="IAM user 2" /></p>
+
+<p>Your custom policy from before should be listed and from there you can select it and click “Next” at the bottom. From here you can click “Next”, “Review” and then “Create user”. Once the user has been created your credentials (Access key ID and Secret access key) will be listed.</p>
+
+<h4 id="adding-it-to-joplin">Adding it to Joplin</h4>
+
+<p>You should now have all the information you need for Joplin.</p>
+
+<p>Open Joplin and click Tools -&gt; Options and open the Synchronisation tab. From here fill it out like below.</p>
+
+<p><img src="/assets/img/syncing-joplin-notes-to-aws-s3/joplin-sync.png" alt="Joplin sync" /></p>
+
+<p>Now your Joplin should be syncing with your S3 bucket. After syncing you should be able to refresh your bucket and see all your Joplin files and notebooks there.</p>
+
+  </div><a class="u-url" href="/syncing-joplin-notes-to-aws-s3.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+        <ul class="contact-list">
+          <li class="p-name">Thomas (jfx)</li>
+          <li><a class="u-email" href="mailto:me@jfx.ac">me@jfx.ac</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>A blog dedicated to my rambling thoughts about tech and privacy.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/itsjfx" title="itsjfx"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/itsjfx" title="itsjfx"><svg class="svg-icon grey"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
